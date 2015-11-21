@@ -17,16 +17,26 @@ public class LikeProphesy {
     
     static String accessToken = "CAACEdEose0cBAAhS2ADVC7hSnBZCn6NnWZCieNH0k5ys9gTrE2FRm78xF1pLJwrSfmXwHWuxstpUXBBpwfXLpEneBAcYcGpstEMDL71HsxwMjvNWrPSufq95QRbFAXKIyjzv3X1B40t05IPFqjZC2OLFjXhuDTKWcpZAQfXEwsmezXsAF3R3ZCyoLscrZCi26ZBl9uvC60WfgZDZD";
     
-    public static void main(String[] args)
+    public static int prophesize(String newPost)
     {
-        String newPost = "first time cool cool hololens";
-        String name = "Arpit Gogia";
-        System.out.println(prophesize(newPost, name));
+        HashMap<String,ArrayList<String>> hash = FBHashGet.getCleanHash(accessToken);        
+        int count = 0;
+        Double prob = 0.0;
+        for (String name : hash.keySet())
+        {
+            prob = algoMachOne(newPost, name, hash);
+            System.out.println(name + ": " + prob);
+            if (prob > 0.0)
+            {
+                count++;
+            }
+        }   
+        System.out.println("Projected New Likes = " + count);
+        return count;
     }
     
-    public static Double prophesize(String post, String name)
+    public static Double algoMachOne(String post, String name, HashMap<String,ArrayList<String>> hash)
     {
-        HashMap<String,ArrayList<String>> hash = FBHashGet.getCleanHash();
         ArrayList<String> likedWords = hash.get(name);
         ArrayList<String> testWords = FBHashGet.getPost(post, "");
         
@@ -39,9 +49,7 @@ public class LikeProphesy {
             {
                 matches++;
             }
-        }
-        System.out.println(likedWords);
-        System.out.println(testWords);        
+        }        
         probability = (matches*1.0)/testWords.size();
         
         return probability;

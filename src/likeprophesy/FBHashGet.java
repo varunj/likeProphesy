@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import static likeprophesy.LikeProphesy.accessToken;
 
 /**
  *
@@ -23,7 +22,7 @@ import static likeprophesy.LikeProphesy.accessToken;
  */
 public class FBHashGet {
     
-    public static HashMap<String,ArrayList<String>> getCleanHash()
+    public static HashMap<String,ArrayList<String>> getCleanHash(String accessToken)
     {
         HashMap<String,ArrayList<String>> userLikedList = new HashMap<String,ArrayList<String>>(); 
         try
