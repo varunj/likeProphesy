@@ -15,7 +15,7 @@ import java.util.HashMap;
  */
 public class LikeProphesy {
     
-    static String accessToken = "CAACEdEose0cBAFxfqhOQ4ZAtEZCehnZBWvEpPwZA0QYaKj5m0TZChHhSkbwgJ2tUM0ECWOEB6WErTY3UYldMzZC5BF7Ri30ZBXMFGfXPBkWkNU45BqzMdcTbigFLJCclBxTIeTKnmd3pZBnASLmZCAGmrbETyZAaRmwzJdgTvi4AZAEsnpOHmO4sUd9isaV6GZBMZBZBj4n9LiONGUugZDZD";
+    static String accessToken = "CAACEdEose0cBAHdlug1565oFw6lXIc1nfosOgEX9ammEIdgSSvGcAMEXxAvC6OhOTvksHUKrOFgaUmsiiuC78n1BEkTgRlDcWC4vx56bAQaNIG6bDqf0eN6LQ1fIOzO8TmigXVmOdGzRwcH3ydZBc7aplka7tyejuhyogf5c43FPAtOV1QTk88R49wnMPQDQc72TSjgZDZD";
     
     public static int prophesize(String newPost)
     {
