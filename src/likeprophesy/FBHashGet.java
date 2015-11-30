@@ -9,6 +9,7 @@ package likeprophesy;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Parameter;
 import com.restfb.types.Post;
 import com.restfb.types.User;
 import java.util.ArrayList;
@@ -31,16 +32,20 @@ public class FBHashGet {
             
             User user = facebookClient.fetchObject("me", User.class);
             
-            Connection<Post> myFeedConnection = facebookClient.fetchConnection(user.getId() + "/feed", Post.class);
-                      
+            Connection<Post> myFeedConnection = facebookClient.fetchConnection(user.getId() + "/feed", Post.class,
+                                                    Parameter.with("fields", "likes.limit(100),comments.summary(true),"
+                                                            + "type,with_tags,updated_time,shares,place,picture,message_tags,name,description,"
+                                                            + "message,link")
+                                                     );
             for (List<Post> feed : myFeedConnection)
             {
                 for (Post post : feed)
-                {
+                {                    
                     if (post.getLikes() != null)
                     {
+//                        System.out.println(post);
                         ArrayList<String> names = getNames(post.getLikes().getData().toString());
-                        ArrayList<String> postWords = getPost(post.getDescription(), post.getMessage());   
+                        ArrayList<String> postWords = getPost(post.getDescription(), post.getMessage(), post.getName());   // -type1: answer: i have not -type2: normal text -type3: should i choose
                         
                         if (!postWords.isEmpty())
                         {
@@ -87,9 +92,12 @@ public class FBHashGet {
         return nameList;
     }
     
-    public static ArrayList<String> getPost(String x, String y)
+    public static ArrayList<String> getPost(String x, String y, String z)
     {
-        String str = x + " " + y;
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println(z);
+        String str = x + " " + y + " " + z;
         str = str.replaceAll("//", "/");
         str = str.replaceAll("[^A-Za-z ]+", "");
         str = str.replaceAll("  ", " ");
@@ -123,7 +131,8 @@ public class FBHashGet {
             {
                 strArr.set(i, temp.split("http")[1].split("com")[0]);
             }
-        } 
+        }
+        System.out.println(strArr);
         return strArr;
     }
     

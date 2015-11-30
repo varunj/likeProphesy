@@ -15,7 +15,7 @@ import java.util.HashMap;
  */
 public class LikeProphesy {
     
-    static String accessToken = "CAACEdEose0cBAHdlug1565oFw6lXIc1nfosOgEX9ammEIdgSSvGcAMEXxAvC6OhOTvksHUKrOFgaUmsiiuC78n1BEkTgRlDcWC4vx56bAQaNIG6bDqf0eN6LQ1fIOzO8TmigXVmOdGzRwcH3ydZBc7aplka7tyejuhyogf5c43FPAtOV1QTk88R49wnMPQDQc72TSjgZDZD";
+    static String accessToken = "CAACEdEose0cBAMRo7lxDvHZA7XX75jgGIHk07E0QIv8IrMiDx6dpm1Imyc2aK3uEn8hR6jMO4GyQu6vF14FvZAZBt4Oaiwgi7WAXvNDlJXJO0EvIUij7pIYBMXLOZAvhBS1O0elCvWeg4ZAr18xZBSnadLfeRMlKZAASRNhEZANvGCzKvyXn6ltfuDDy4O2l6tcJQpfwlPODRAZDZD";
     
     public static int prophesize(String newPost)
     {
@@ -38,7 +38,7 @@ public class LikeProphesy {
     public static Double algoMachOne(String post, String name, HashMap<String,ArrayList<String>> hash)
     {
         ArrayList<String> likedWords = hash.get(name);
-        ArrayList<String> testWords = FBHashGet.getPost(post, "");
+        ArrayList<String> testWords = FBHashGet.getPost(post, "", "");
         
         int matches = 0;
         Double probability = 0.0;
