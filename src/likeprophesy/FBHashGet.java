@@ -23,6 +23,9 @@ import java.util.List;
  */
 public class FBHashGet {
     
+    static HashMap<String,Integer> userCountList = new HashMap<String,Integer>(); 
+    static int totalPosts = 0;
+    
     public static HashMap<String,ArrayList<String>> getCleanHash(String accessToken)
     {
         HashMap<String,ArrayList<String>> userLikedList = new HashMap<String,ArrayList<String>>(); 
@@ -43,12 +46,12 @@ public class FBHashGet {
                 {                    
                     if (post.getLikes() != null)
                     {
-//                        System.out.println(post);
                         ArrayList<String> names = getNames(post.getLikes().getData().toString());
                         ArrayList<String> postWords = getPost(post.getDescription(), post.getMessage(), post.getName());   // -type1: answer: i have not -type2: normal text -type3: should i choose
                         
                         if (!postWords.isEmpty())
                         {
+                            totalPosts++;
                             for(String person : names)
                             {
                                 if (userLikedList.containsKey(person))
@@ -57,10 +60,12 @@ public class FBHashGet {
                                     newWords.addAll(userLikedList.get(person));
                                     newWords.addAll(postWords);
                                     userLikedList.put(person, newWords);
+                                    userCountList.put(person, userCountList.get(person)+1);
                                 }
                                 else
                                 {
                                     userLikedList.put(person, postWords);
+                                    userCountList.put(person, 1);
                                 }
                             }
                         }
@@ -94,12 +99,10 @@ public class FBHashGet {
     
     public static ArrayList<String> getPost(String x, String y, String z)
     {
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(z);
         String str = x + " " + y + " " + z;
-        str = str.replaceAll("//", "/");
-        str = str.replaceAll("[^A-Za-z ]+", "");
+        str = str.replaceAll("//", "/"); 
+        str = str.replaceAll("\n", "").replace("\r", "");; 
+        str = str.replaceAll("[^A-Za-z]+", " ");
         str = str.replaceAll("  ", " ");
         str = str.replaceAll("    ", " ");
         str = str.replaceAll("  ", " ");
@@ -107,8 +110,9 @@ public class FBHashGet {
         str = str.replaceAll("null ", "");
         str = str.replaceAll("null", "");
         str = str.replaceAll("  ", " ");
+        str = str.replaceAll("  ", " ");
         
-        ArrayList<String> strArr = new ArrayList<String>();
+        ArrayList<String> strArr = new ArrayList<String>(); 
         for (String eachWord : str.split(" "))
         {
             if (eachWord.length() > 0)
@@ -116,23 +120,7 @@ public class FBHashGet {
                 strArr.add(eachWord.toLowerCase());
             }
         }
-        for (int i = 0; i < strArr.size(); i++)
-        {
-            String temp = strArr.get(i);
-            if (temp.contains("www"))
-            {
-                strArr.set(i, temp.split("www")[1].split("com")[0]);
-            }
-        } 
-        for (int i = 0; i < strArr.size(); i++)
-        {
-            String temp = strArr.get(i);
-            if (temp.contains("http"))
-            {
-                strArr.set(i, temp.split("http")[1].split("com")[0]);
-            }
-        }
-        System.out.println(strArr);
+        
         return strArr;
     }
     
