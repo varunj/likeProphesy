@@ -17,14 +17,21 @@ public class LikeProphesy {
     
     public static int prophesize(String newPost, String accessToken)
     {
-        HashMap<String,ArrayList<String>> hash = FBHashGet.getCleanHash(accessToken);        
-        int count1 = algoMachOne(newPost, hash);
-        int count2 = algoMachTwo(FBHashGet.userCountList);
-        return count1;
+        HashMap<String,ArrayList<String>> hash = FBHashGet.getCleanHash(accessToken); 
+        
+        HashMap<String,Double> result1 = algoMachOne(newPost, hash);
+        System.out.println(result1);
+        
+        HashMap<String,Double> result2 = algoMachTwo(FBHashGet.userCountList);
+        System.out.println(result2);
+        
+        System.out.println("Projected New Likes = " + result1.size());
+        return result1.size();
     }
     
-    public static int algoMachOne(String post, HashMap<String,ArrayList<String>> hash)
+    public static HashMap<String,Double> algoMachOne(String post, HashMap<String,ArrayList<String>> hash)
     {
+        HashMap<String,Double> result = new HashMap<String,Double>();
         int count = 0, matches = 0;
         Double prob = 0.0;
         for (String name : hash.keySet())
@@ -40,21 +47,22 @@ public class LikeProphesy {
                     matches++;
                 }
             }        
-            prob = (matches*1.000000000)/testWords.size();
+            prob = (matches*1.0)/testWords.size();
             if (prob > 0.0)
             {
-                System.out.println(name + ": " + prob);
-                count++;
+                result.put(name, prob);
             }
         }   
-        System.out.println("Projected New Likes = " + count);
-        return count;
+        return result;
     }
     
-    public static int algoMachTwo(HashMap<String,Integer> hash)
+    public static HashMap<String,Double> algoMachTwo(HashMap<String,Integer> hash)
     {
-        int count = 0;
-        
-        return count;
+        HashMap<String,Double> result = new HashMap<String,Double>();
+        for (String name : hash.keySet())
+        {    
+            result.put(name, (hash.get(name)*1.0)/FBHashGet.totalPosts);
+        }   
+        return result;
     }
 }
