@@ -13,9 +13,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -23,8 +26,11 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import static likeprophesy.LikeProphesy.countlikesFrom1;
+import static likeprophesy.LikeProphesy.countlikesFrom2;
 import static likeprophesy.LikeProphesy.result1;
 
 /**
@@ -34,7 +40,7 @@ import static likeprophesy.LikeProphesy.result1;
  */
 public class StartFXMLController implements Initializable {
     
-    String accessToken = "CAACEdEose0cBAGnJUwERDv4DT8LIUWsvfrtYhXO9cSB7JTHBZATyOd8kssFDnpBnJN5rKVKIfPs33OHVFYLeNnSZCillN5IPDSAWClNaMOrrr1vRstpr3Pii7jFxRNrsMZCtaM0uh5wZCpBzIamnbMYPGntyGmbyA1X6ogIjR7MjzXDoMlyKyQZCU1QYr34tnAU0aB9ZBITxybOsZAWW7IS";
+    String accessToken = "CAACEdEose0cBAPglFU9BXr9znnnQ5f9ROxikg1RwVUHMeVbZAwdgrja7uOVmSLXH3V6d1v3Ko3nz5qlKTA0h8YzTZBHC99Ehrg5SfTTQlZCMYZBZCyQUSs37v2N3wwwo477ZAd9K6xFIMg1TNjyFZCUvdH1sGy4xCjXZCMy8JBghMx8cEbXEtFdC6VV4DZBf1HtO0xdPF9wu1vQZDZD";
     
     @FXML
     private TextField t1;
@@ -48,6 +54,8 @@ public class StartFXMLController implements Initializable {
     private Slider slider;
     @FXML
     private BarChart<String, Double> graph;
+    @FXML
+    private Label sliderLabel;
 
     /**
      * Initializes the controller class.
@@ -56,17 +64,35 @@ public class StartFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         t1.setText("first time cool cool hololens");
         t2.setText(accessToken);
+        slider.setMin(0);
+        slider.setMax(100);
+        slider.setValue(9);
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.setMajorTickUnit(50);
+        slider.setMinorTickCount(5);
+        slider.setBlockIncrement(10);
+        
+        slider.valueProperty().addListener(new ChangeListener<Number>() 
+        {
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) 
+            {
+                if (!slider.isValueChanging() || newValue.doubleValue() == slider.getMax() || newValue.doubleValue() == slider.getMin())
+                {
+                    sliderLabel.setText("" + slider.getValue());
+                }
+            }
+        });
     }    
 
     @FXML
     private void goButtonClick(ActionEvent event) {
-        LikeProphesy.prophesize(t1.getText(), t2.getText());
-        jLabel1.setText("Projected New Likes by algo1 = " + Integer.toString(result1.size()));
-        FBHashGet.totalPosts = 0;
-        FBHashGet.userCountList.clear();
+
+        // predict
+        LikeProphesy.prophesize(t1.getText(), t2.getText(), slider.getValue());
+        jLabel1.setText("Projected New Likes by algo1 = " + countlikesFrom1 + " from 2: " + countlikesFrom2);
         
-        //--------------------------------------------
-        graph.getData().removeAll();
+        // plot data
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
         graph.setTitle("Friends v/s Probability of Liking");
@@ -87,8 +113,12 @@ public class StartFXMLController implements Initializable {
         {
             series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }  
-        graph.getData().add(series);     
         
+        // reinit fields
+        graph.getData().clear();
+        graph.getData().add(series);   
+        FBHashGet.totalPosts = 0;
+        FBHashGet.userCountList.clear();
     }
     
 }

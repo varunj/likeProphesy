@@ -17,23 +17,28 @@ public class LikeProphesy {
     
     static HashMap<String,Double> result1 = new HashMap<String,Double>();
     static HashMap<String,Double> result2 = new HashMap<String,Double>();
+    static int countlikesFrom1 = 0;
+    static int countlikesFrom2 = 0;
+    static int fianlCount = 0;
     
-    public static void prophesize(String newPost, String accessToken)
+    public static int prophesize(String newPost, String accessToken, Double sliderVal)
     {
         result1.clear();
         result2.clear();
+        fianlCount = 0;
+        
         HashMap<String,ArrayList<String>> hash = FBHashGet.getCleanHash(accessToken); 
         
-        algoMachOne(newPost, hash);
-        algoMachTwo(FBHashGet.userCountList);
+        countlikesFrom1 = algoMachOne(newPost, hash, sliderVal);
+        countlikesFrom2 = algoMachTwo(FBHashGet.userCountList, sliderVal);
         
         System.out.println(result1);
         System.out.println(result2);
-        
-        System.out.println("Projected New Likes by algo1= " + result1.size());
+
+        return countlikesFrom1;
     }
     
-    public static void algoMachOne(String post, HashMap<String,ArrayList<String>> hash)
+    public static int algoMachOne(String post, HashMap<String,ArrayList<String>> hash, Double sliderVal)
     {
         int count = 0, matches = 0;
         Double prob = 0.0;
@@ -51,18 +56,32 @@ public class LikeProphesy {
                 }
             }        
             prob = (matches*1.0)/testWords.size();
-            if (prob > 0.0)
+            if (prob > Math.abs(100.0 - sliderVal)/100)
             {
                 result1.put(name, prob);
             }
         }   
+        for (String name : result1.keySet())
+        {
+            if (result1.get(name) >= Math.abs(100.0 - sliderVal)/100)
+            {
+                count++;
+            }
+        }
+        return count;
     }
     
-    public static void algoMachTwo(HashMap<String,Integer> hash)
+    public static int algoMachTwo(HashMap<String,Integer> hash, Double sliderVal)
     {
+        int count = 0;
         for (String name : hash.keySet())
         {    
             result2.put(name, (hash.get(name)*1.0)/FBHashGet.totalPosts);
+            if (result2.get(name) >= Math.abs(100.0 - sliderVal)/100)
+            {
+                count++;
+            }
         }   
+        return count;
     }
 }

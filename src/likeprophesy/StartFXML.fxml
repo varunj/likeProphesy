@@ -16,13 +16,15 @@
                <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1200.0">
                      <children>
-                        <TextField fx:id="t1" layoutX="161.0" layoutY="111.0" prefHeight="25.0" prefWidth="381.0" />
-                        <TextField fx:id="t2" layoutX="161.0" layoutY="49.0" prefHeight="25.0" prefWidth="381.0" />
+                        <TextField fx:id="t1" layoutX="161.0" layoutY="111.0" prefHeight="25.0" prefWidth="455.0" />
+                        <TextField fx:id="t2" layoutX="161.0" layoutY="49.0" prefHeight="25.0" prefWidth="456.0" />
                         <Label fx:id="jLabel1" layoutX="161.0" layoutY="294.0" prefHeight="17.0" prefWidth="381.0" />
                         <Button fx:id="jButton1" layoutX="72.0" layoutY="290.0" mnemonicParsing="false" onAction="#goButtonClick" text="Go" />
                         <Label layoutX="76.0" layoutY="115.0" text="Post" />
                         <Label layoutX="52.0" layoutY="53.0" text="Access Token" />
-                        <Slider fx:id="slider" layoutX="161.0" layoutY="200.0" prefHeight="27.0" prefWidth="381.0" />
+                        <Slider fx:id="slider" layoutX="161.0" layoutY="200.0" prefHeight="27.0" prefWidth="455.0" />
+                        <Label fx:id="sliderLabel" layoutX="626.0" layoutY="205.0" prefHeight="17.0" prefWidth="47.0" />
+                        <Label layoutX="47.0" layoutY="205.0" text="Optimism Level" />
                      </children>
                   </AnchorPane>
                </content>
