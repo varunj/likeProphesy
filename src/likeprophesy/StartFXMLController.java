@@ -103,6 +103,7 @@ public class StartFXMLController implements Initializable {
 
     @FXML
     private void goButtonClick(ActionEvent event)throws InterruptedException  {
+        jLabel1.clear();
         for (int i = 0; i < 6; i++)
         {
             progressBar.setProgress((i*1.0)/10);
@@ -116,10 +117,9 @@ public class StartFXMLController implements Initializable {
                 System.out.print(x + "--------------");
             }
         }
-//        LikeProphesy.prophesize(t1.getText(), t2.getText(), slider.getValue());
+        LikeProphesy.prophesize(t1.getText(), t2.getText(), slider.getValue());
         progressBar.setProgress(1);
-        jLabel1.setText("Projected New Likes by algo1 = " + countlikesFrom1 + " from 2: " + countlikesFrom2 + " from 3: " + countlikesFrom3);
-        
+        jLabel1.appendText("Projected New Likes by algo1 = " + countlikesFrom1 + " from 2: " + countlikesFrom2 + " from 3: " + countlikesFrom3);
         // plot data
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
@@ -152,6 +152,7 @@ public class StartFXMLController implements Initializable {
     
     @FXML
     private void UploadButtonClick(ActionEvent event) {
+        jLabel1.clear();
         try
         {
             Node node = (Node) event.getSource();
