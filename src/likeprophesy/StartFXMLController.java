@@ -58,7 +58,7 @@ public class StartFXMLController implements Initializable {
     @FXML
     private Button jButton1;
     @FXML
-    private Label jLabel1;
+    private TextArea jLabel1;
     @FXML
     private TextField t2;
     @FXML
@@ -109,7 +109,14 @@ public class StartFXMLController implements Initializable {
             Thread.sleep(90);
         }
         // predict
-        LikeProphesy.prophesize(t1.getText(), t2.getText(), slider.getValue());
+        for (String x : t1.getText().split("\n"))
+        {
+            if (x.length() > 0)
+            {
+                System.out.print(x + "--------------");
+            }
+        }
+//        LikeProphesy.prophesize(t1.getText(), t2.getText(), slider.getValue());
         progressBar.setProgress(1);
         jLabel1.setText("Projected New Likes by algo1 = " + countlikesFrom1 + " from 2: " + countlikesFrom2 + " from 3: " + countlikesFrom3);
         
