@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -16,15 +17,21 @@
                <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1200.0">
                      <children>
-                        <TextField fx:id="t1" layoutX="161.0" layoutY="111.0" prefHeight="25.0" prefWidth="455.0" />
                         <TextField fx:id="t2" layoutX="161.0" layoutY="49.0" prefHeight="25.0" prefWidth="456.0" />
                         <Label fx:id="jLabel1" layoutX="161.0" layoutY="294.0" prefHeight="17.0" prefWidth="381.0" />
-                        <Button fx:id="jButton1" layoutX="72.0" layoutY="290.0" mnemonicParsing="false" onAction="#goButtonClick" text="Go" />
-                        <Label layoutX="76.0" layoutY="115.0" text="Post" />
+                        <Button fx:id="jButton1" layoutX="335.0" layoutY="491.0" mnemonicParsing="false" onAction="#goButtonClick" prefHeight="25.0" prefWidth="80.0" text="Go" />
+                        <Label layoutX="76.0" layoutY="146.0" text="Posts" />
                         <Label layoutX="52.0" layoutY="53.0" text="Access Token" />
-                        <Slider fx:id="slider" layoutX="161.0" layoutY="200.0" prefHeight="27.0" prefWidth="455.0" />
+                        <Slider fx:id="slider" layoutX="158.0" layoutY="411.0" prefHeight="27.0" prefWidth="455.0" />
                         <Label fx:id="sliderLabel" layoutX="626.0" layoutY="205.0" prefHeight="17.0" prefWidth="47.0" />
-                        <Label layoutX="47.0" layoutY="205.0" text="Optimism Level" />
+                        <Label layoutX="58.0" layoutY="416.0" text="Optimism Level" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="258.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text layoutX="88.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter posts separated by a new space" />
+                        <TextArea fx:id="t1" layoutX="158.0" layoutY="140.0" prefHeight="200.0" prefWidth="200.0" />
+                        <Text layoutX="458.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Likes by Image" />
+                        <ImageView fx:id="iv1" fitHeight="197.0" fitWidth="200.0" layoutX="426.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="UploadButton" layoutX="520.0" layoutY="352.0" mnemonicParsing="false" onAction="#UploadButtonClick" text="Upload Image" />
+                        <ProgressBar fx:id="progressBar" layoutX="52.0" layoutY="539.0" prefHeight="18.0" prefWidth="570.0" progress="0.0" />
                      </children>
                   </AnchorPane>
                </content>
