@@ -6,13 +6,26 @@
 package likeprophesy;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import static likeprophesy.LikeProphesy.result1;
 
 /**
  * FXML Controller class
@@ -31,6 +44,10 @@ public class StartFXMLController implements Initializable {
     private Label jLabel1;
     @FXML
     private TextField t2;
+    @FXML
+    private Slider slider;
+    @FXML
+    private BarChart<String, Double> graph;
 
     /**
      * Initializes the controller class.
@@ -43,9 +60,35 @@ public class StartFXMLController implements Initializable {
 
     @FXML
     private void goButtonClick(ActionEvent event) {
-        jLabel1.setText("Projected New Likes = " + Integer.toString(LikeProphesy.prophesize(t1.getText(), t2.getText())));
+        LikeProphesy.prophesize(t1.getText(), t2.getText());
+        jLabel1.setText("Projected New Likes by algo1 = " + Integer.toString(result1.size()));
         FBHashGet.totalPosts = 0;
         FBHashGet.userCountList.clear();
+        
+        //--------------------------------------------
+        graph.getData().removeAll();
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        graph.setTitle("Friends v/s Probability of Liking");
+        xAxis.setLabel("Name");       
+        yAxis.setLabel("Probability(like)");
+ 
+        XYChart.Series<String, Double> series = new XYChart.Series<>();
+        Set<Map.Entry<String, Double>> set = result1.entrySet();
+        List<Map.Entry<String, Double>> list = new ArrayList<Map.Entry<String, Double>>(set);
+        Collections.sort( list, new Comparator<Map.Entry<String, Double>>()
+        {
+            public int compare( Map.Entry<String, Double> o1, Map.Entry<String, Double> o2 )
+            {
+                return (o2.getValue()).compareTo( o1.getValue() );
+            }
+        } );
+        for(Map.Entry<String, Double> entry:list)
+        {
+            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+        }  
+        graph.getData().add(series);     
+        
     }
     
 }

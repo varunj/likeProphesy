@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,13 +8,41 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="likeprophesy.StartFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="likeprophesy.StartFXMLController">
    <children>
-      <Label layoutX="37.0" layoutY="47.0" text="Access Token" />
-      <Label layoutX="37.0" layoutY="110.0" text="Post" />
-      <Button fx:id="jButton1" layoutX="33.0" layoutY="188.0" mnemonicParsing="false" onAction="#goButtonClick" text="Go" />
-      <Label fx:id="jLabel1" layoutX="184.0" layoutY="192.0" prefHeight="17.0" prefWidth="381.0" />
-      <TextField fx:id="t2" layoutX="184.0" layoutY="43.0" prefHeight="25.0" prefWidth="381.0" />
-      <TextField fx:id="t1" layoutX="184.0" layoutY="106.0" prefHeight="25.0" prefWidth="381.0" />
+      <TabPane prefHeight="600.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Likes Count">
+               <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1200.0">
+                     <children>
+                        <TextField fx:id="t1" layoutX="161.0" layoutY="111.0" prefHeight="25.0" prefWidth="381.0" />
+                        <TextField fx:id="t2" layoutX="161.0" layoutY="49.0" prefHeight="25.0" prefWidth="381.0" />
+                        <Label fx:id="jLabel1" layoutX="161.0" layoutY="294.0" prefHeight="17.0" prefWidth="381.0" />
+                        <Button fx:id="jButton1" layoutX="72.0" layoutY="290.0" mnemonicParsing="false" onAction="#goButtonClick" text="Go" />
+                        <Label layoutX="76.0" layoutY="115.0" text="Post" />
+                        <Label layoutX="52.0" layoutY="53.0" text="Access Token" />
+                        <Slider fx:id="slider" layoutX="161.0" layoutY="200.0" prefHeight="27.0" prefWidth="381.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+          <Tab text="Graphs">
+               <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1200.0">
+                     <children>
+                        <BarChart fx:id="graph" layoutX="3.0" layoutY="4.0" prefHeight="600.0" prefWidth="1200.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children></AnchorPane>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>
