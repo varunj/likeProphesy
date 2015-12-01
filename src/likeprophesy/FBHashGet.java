@@ -43,7 +43,7 @@ public class FBHashGet {
             for (List<Post> feed : myFeedConnection)
             {
                 for (Post post : feed)
-                {                    
+                { 
                     if (post.getLikes() != null)
                     {
                         ArrayList<String> names = getNames(post.getLikes().getData().toString());

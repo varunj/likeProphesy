@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="likeprophesy.StartFXMLController">
+   <children>
+      <Label layoutX="37.0" layoutY="47.0" text="Access Token" />
+      <Label layoutX="37.0" layoutY="110.0" text="Post" />
+      <Button fx:id="jButton1" layoutX="33.0" layoutY="188.0" mnemonicParsing="false" onAction="#goButtonClick" text="Go" />
+      <Label fx:id="jLabel1" layoutX="184.0" layoutY="192.0" prefHeight="17.0" prefWidth="381.0" />
+      <TextField fx:id="t2" layoutX="184.0" layoutY="43.0" prefHeight="25.0" prefWidth="381.0" />
+      <TextField fx:id="t1" layoutX="184.0" layoutY="106.0" prefHeight="25.0" prefWidth="381.0" />
+   </children>
+</AnchorPane>
