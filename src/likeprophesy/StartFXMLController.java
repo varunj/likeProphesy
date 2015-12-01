@@ -31,6 +31,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import static likeprophesy.LikeProphesy.countlikesFrom1;
 import static likeprophesy.LikeProphesy.countlikesFrom2;
+import static likeprophesy.LikeProphesy.countlikesFrom3;
 import static likeprophesy.LikeProphesy.result1;
 
 /**
@@ -40,7 +41,7 @@ import static likeprophesy.LikeProphesy.result1;
  */
 public class StartFXMLController implements Initializable {
     
-    String accessToken = "CAACEdEose0cBAPglFU9BXr9znnnQ5f9ROxikg1RwVUHMeVbZAwdgrja7uOVmSLXH3V6d1v3Ko3nz5qlKTA0h8YzTZBHC99Ehrg5SfTTQlZCMYZBZCyQUSs37v2N3wwwo477ZAd9K6xFIMg1TNjyFZCUvdH1sGy4xCjXZCMy8JBghMx8cEbXEtFdC6VV4DZBf1HtO0xdPF9wu1vQZDZD";
+    String accessToken = "CAACEdEose0cBAASspZC5PZA3IV9pD6hSgvnEHV92FeYaBctX4sXplPADDleCEQZBPEqIHndDPpcBg7ZC81W2kqJD0w7ARW1WgJjEXYZBVh0Sr2EaUDx6uVGz0Yf6sMG7CDl43NzDMf1BeQJX6XekW71lpWDNE0oxmKe0eVrlcZARSsaxZBKs8GUx3rcdl2f4GGPc1bebx49bQZDZD";
     
     @FXML
     private TextField t1;
@@ -90,7 +91,7 @@ public class StartFXMLController implements Initializable {
 
         // predict
         LikeProphesy.prophesize(t1.getText(), t2.getText(), slider.getValue());
-        jLabel1.setText("Projected New Likes by algo1 = " + countlikesFrom1 + " from 2: " + countlikesFrom2);
+        jLabel1.setText("Projected New Likes by algo1 = " + countlikesFrom1 + " from 2: " + countlikesFrom2 + " from 3: " + countlikesFrom3);
         
         // plot data
         CategoryAxis xAxis = new CategoryAxis();
@@ -119,6 +120,7 @@ public class StartFXMLController implements Initializable {
         graph.getData().add(series);   
         FBHashGet.totalPosts = 0;
         FBHashGet.userCountList.clear();
+        FBHashGet.numberLikes.clear();
     }
     
 }

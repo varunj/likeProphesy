@@ -19,6 +19,7 @@ public class LikeProphesy {
     static HashMap<String,Double> result2 = new HashMap<String,Double>();
     static int countlikesFrom1 = 0;
     static int countlikesFrom2 = 0;
+    static int countlikesFrom3 = 0;
     static int fianlCount = 0;
     
     public static int prophesize(String newPost, String accessToken, Double sliderVal)
@@ -31,11 +32,12 @@ public class LikeProphesy {
         
         countlikesFrom1 = algoMachOne(newPost, hash, sliderVal);
         countlikesFrom2 = algoMachTwo(FBHashGet.userCountList, sliderVal);
-        
+        countlikesFrom3 = algoMachThree(0);
+                
         System.out.println(result1);
         System.out.println(result2);
 
-        return countlikesFrom1;
+        return fianlCount;
     }
     
     public static int algoMachOne(String post, HashMap<String,ArrayList<String>> hash, Double sliderVal)
@@ -83,5 +85,28 @@ public class LikeProphesy {
             }
         }   
         return count;
+    }
+    
+    public static int algoMachThree(int limit)
+    {
+        Double temp = 0.0;
+        if (limit == 0)
+        {
+            for (int i = 0; i < FBHashGet.numberLikes.size(); i++)
+            {
+                temp += FBHashGet.numberLikes.get(i) * FBHashGet.numberLikes.get(i);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < limit; i++)
+            {
+                temp += FBHashGet.numberLikes.get(i) * FBHashGet.numberLikes.get(i);
+            }
+        }
+        
+        temp /= FBHashGet.numberLikes.size();
+        temp = Math.sqrt(temp);
+        return temp.intValue();
     }
 }

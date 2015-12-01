@@ -23,7 +23,8 @@ import java.util.List;
  */
 public class FBHashGet {
     
-    static HashMap<String,Integer> userCountList = new HashMap<String,Integer>(); 
+    static HashMap<String,Integer> userCountList = new HashMap<String,Integer>();
+    static ArrayList<Integer> numberLikes = new ArrayList<>();
     static int totalPosts = 0;
     
     public static HashMap<String,ArrayList<String>> getCleanHash(String accessToken)
@@ -51,6 +52,7 @@ public class FBHashGet {
                         
                         if (!postWords.isEmpty())
                         {
+                            numberLikes.add(names.size());
                             totalPosts++;
                             for(String person : names)
                             {
