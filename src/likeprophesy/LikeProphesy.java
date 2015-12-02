@@ -13,7 +13,7 @@ import static likeprophesy.FBHashGet.totalPosts;
 
 /**
  *
- * @author VarunJain
+ * @author VarunJain, Ayush Agarwal
  */
 public class LikeProphesy {
     

@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author VarunJain
+ * @author VarunJain, Ayush Agarwal
  */
 public class RunThis extends Application {
     

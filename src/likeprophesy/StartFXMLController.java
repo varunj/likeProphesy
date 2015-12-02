@@ -114,7 +114,7 @@ public class StartFXMLController implements Initializable {
         jLabel1.appendText("Projected New Likes by:");
         for (Integer xxx : countlikesFrom1)
         {
-            int a = 0, b = 0;
+            int a = 17, b = 31;
             int cumm = a*xxx + b*countlikesFrom3;
             jLabel1.appendText("\nAlgo1 = " + xxx + "\nAlgo2 = " + countlikesFrom2 + "\nAlgo3 = " + countlikesFrom3 + "\nAlgoCumm = " + cumm + "\n------");
         }

@@ -20,7 +20,7 @@ import static likeprophesy.LikeProphesy.postToPredict;
 
 /**
  *
- * @author VarunJain
+ * @author VarunJain, Ayush Agarwal
  */
 public class FBHashGet {
     
