@@ -116,6 +116,7 @@ public class StartFXMLController implements Initializable {
         {
             int a = 17, b = 31;
             int cumm = a*xxx + b*countlikesFrom3;
+            cumm = cumm/19;
             jLabel1.appendText("\nAlgo1 = " + xxx + "\nAlgo2 = " + countlikesFrom2 + "\nAlgo3 = " + countlikesFrom3 + "\nAlgoCumm = " + cumm + "\n------");
         }
         
