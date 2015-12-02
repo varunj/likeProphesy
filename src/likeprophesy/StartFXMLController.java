@@ -50,7 +50,7 @@ import static likeprophesy.LikeProphesy.result1;
  */
 public class StartFXMLController implements Initializable {
     
-    String accessToken = "CAACEdEose0cBAASspZC5PZA3IV9pD6hSgvnEHV92FeYaBctX4sXplPADDleCEQZBPEqIHndDPpcBg7ZC81W2kqJD0w7ARW1WgJjEXYZBVh0Sr2EaUDx6uVGz0Yf6sMG7CDl43NzDMf1BeQJX6XekW71lpWDNE0oxmKe0eVrlcZARSsaxZBKs8GUx3rcdl2f4GGPc1bebx49bQZDZD";
+    String accessToken = "CAACEdEose0cBABw24dCbDJWZCQS0AzclwmCUP5UZB0tVivRwDZBQn8FczKLtETQYqiUgOlKNyzVrRWVrWYUSIaMAEVIZCaxBXCESZClsnnKW86hBrU7IelL2Gjwh5jAhUMsxYsnZCv9VAtyRKH4G34woSORdO6gwSPShmrdugEIfY16QaUQheOATQspRZCoQbLGfk9p0IeNewZDZD";
     String imagePath = "";
     
     @FXML
@@ -82,7 +82,8 @@ public class StartFXMLController implements Initializable {
         t2.setText(accessToken);
         slider.setMin(0);
         slider.setMax(100);
-        slider.setValue(9);
+        slider.setValue(97);
+        sliderLabel.setText(""+97);
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
         slider.setMajorTickUnit(50);
@@ -110,16 +111,15 @@ public class StartFXMLController implements Initializable {
             Thread.sleep(90);
         }
         // predict
-        for (String x : t1.getText().split("\n"))
-        {
-            if (x.length() > 0)
-            {
-                System.out.print(x + "--------------");
-            }
-        }
         LikeProphesy.prophesize(t1.getText(), t2.getText(), slider.getValue());
         progressBar.setProgress(1);
-        jLabel1.appendText("Projected New Likes by algo1 = " + countlikesFrom1 + " from 2: " + countlikesFrom2 + " from 3: " + countlikesFrom3);
+        
+        jLabel1.appendText("Projected New Likes by:");
+        for (Integer xxx : countlikesFrom1)
+        {
+            jLabel1.appendText("\nAlgo1 = " + xxx + "\nAlgo2 = " + countlikesFrom2 + "\nAlgo3 = " + countlikesFrom3 + "\n------");
+        }
+        
         // plot data
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();

@@ -17,7 +17,7 @@ public class LikeProphesy {
     
     static HashMap<String,Double> result1 = new HashMap<String,Double>();
     static HashMap<String,Double> result2 = new HashMap<String,Double>();
-    static int countlikesFrom1 = 0;
+    static ArrayList<Integer> countlikesFrom1 = new ArrayList<Integer>();
     static int countlikesFrom2 = 0;
     static int countlikesFrom3 = 0;
     static int fianlCount = 0;
@@ -30,7 +30,7 @@ public class LikeProphesy {
         
         HashMap<String,ArrayList<String>> hash = FBHashGet.getCleanHash(accessToken); 
         
-        countlikesFrom1 = algoMachOne(newPost, hash, sliderVal);
+        countlikesFrom1 = algoMachOneCaller(newPost, hash, sliderVal);
         countlikesFrom2 = algoMachTwo(FBHashGet.userCountList, sliderVal);
         countlikesFrom3 = algoMachThree(0);
                 
@@ -40,38 +40,50 @@ public class LikeProphesy {
         return fianlCount;
     }
     
-    public static int algoMachOne(String post, HashMap<String,ArrayList<String>> hash, Double sliderVal)
+    public static ArrayList<Integer> algoMachOneCaller(String post, HashMap<String,ArrayList<String>> hash, Double sliderVal)
     {
-        int count = 0, matches = 0;
-        Double prob = 0.0;
-        for (String name : hash.keySet())
+        ArrayList<Integer> countArr = new ArrayList<Integer>();
+        for (String postEach : post.split("\n"))
         {
-            ArrayList<String> likedWords = hash.get(name);
-            ArrayList<String> testWords = FBHashGet.getPost(post, "", "");
-            
-            matches = 0;
-            for (String x : testWords)
+            if (postEach.length() > 0)
             {
-                if (likedWords.contains(x))
-                {
-                    matches++;
-                }
-            }        
-            prob = (matches*1.0)/testWords.size();
-            if (prob > Math.abs(100.0 - sliderVal)/100)
-            {
-                result1.put(name, prob);
-            }
-        }   
-        for (String name : result1.keySet())
-        {
-            if (result1.get(name) >= Math.abs(100.0 - sliderVal)/100)
-            {
-                count++;
+                result1.clear();
+                countArr.add(algoMachOne(postEach, hash, sliderVal));
             }
         }
-        return count;
+        return countArr;
     }
+    
+public static int algoMachOne(String post, HashMap<String,ArrayList<String>> hash, Double sliderVal)
+{
+    int countt = 0, matches = 0;
+    for (String name : hash.keySet())
+    {
+        ArrayList<String> likedWords = hash.get(name);
+        ArrayList<String> testWords = FBHashGet.getPost(post, "", "");
+        matches = 0;
+        for (String x : testWords)
+        {
+            if (likedWords.contains(x))
+            {
+                matches++;
+            }
+        }       
+        Double prob = (matches*1.0)/testWords.size();
+        if (prob > Math.abs(100.0 - sliderVal)/100)
+        {
+            result1.put(name, prob);
+        }
+    }   
+    for (String name : result1.keySet())
+    {
+        if (result1.get(name) >= Math.abs(100.0 - sliderVal)/100)
+        {
+            countt++;
+        }
+    }
+    return countt;
+}
     
     public static int algoMachTwo(HashMap<String,Integer> hash, Double sliderVal)
     {
