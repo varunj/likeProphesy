@@ -7,7 +7,9 @@
 package likeprophesy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import static likeprophesy.FBHashGet.totalPosts;
 
 /**
  *
@@ -22,7 +24,7 @@ public class LikeProphesy {
     static int countlikesFrom3 = 0;
     static int fianlCount = 0;
     
-    public static int prophesize(String newPost, String accessToken, Double sliderVal)
+    public static int prophesize(String newPost, String accessToken, Double sliderVal, int photoOrNot)
     {
         result1.clear();
         result2.clear();
@@ -30,9 +32,16 @@ public class LikeProphesy {
         
         HashMap<String,ArrayList<String>> hash = FBHashGet.getCleanHash(accessToken); 
         
-        countlikesFrom1 = algoMachOneCaller(newPost, hash, sliderVal);
-        countlikesFrom2 = algoMachTwo(FBHashGet.userCountList, sliderVal);
-        countlikesFrom3 = algoMachThree(0);
+        if (photoOrNot == 0)
+        {
+            countlikesFrom1 = algoMachOneCaller(newPost, hash, sliderVal);
+            countlikesFrom2 = algoMachTwo(FBHashGet.userCountList, sliderVal);
+            countlikesFrom3 = algoMachThree(0);
+        }
+        else
+        {
+            countlikesFrom3 = algoMachThree((int) (totalPosts * Math.abs(100.0 - sliderVal)/100));
+        }
                 
         System.out.println(result1);
         System.out.println(result2);
@@ -108,16 +117,19 @@ public static int algoMachOne(String post, HashMap<String,ArrayList<String>> has
             {
                 temp += FBHashGet.numberLikes.get(i) * FBHashGet.numberLikes.get(i);
             }
+            temp /= FBHashGet.numberLikes.size();
         }
         else
         {
+            Collections.sort(FBHashGet.numberLikes, Collections.reverseOrder());
+            System.out.println(FBHashGet.numberLikes);
             for (int i = 0; i < limit; i++)
             {
                 temp += FBHashGet.numberLikes.get(i) * FBHashGet.numberLikes.get(i);
             }
+            temp /= limit;
         }
-        
-        temp /= FBHashGet.numberLikes.size();
+
         temp = Math.sqrt(temp);
         return temp.intValue();
     }

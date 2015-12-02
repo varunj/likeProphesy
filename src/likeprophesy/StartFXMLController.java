@@ -50,7 +50,7 @@ import static likeprophesy.LikeProphesy.result1;
  */
 public class StartFXMLController implements Initializable {
     
-    String accessToken = "CAACEdEose0cBABw24dCbDJWZCQS0AzclwmCUP5UZB0tVivRwDZBQn8FczKLtETQYqiUgOlKNyzVrRWVrWYUSIaMAEVIZCaxBXCESZClsnnKW86hBrU7IelL2Gjwh5jAhUMsxYsnZCv9VAtyRKH4G34woSORdO6gwSPShmrdugEIfY16QaUQheOATQspRZCoQbLGfk9p0IeNewZDZD";
+    String accessToken = "CAACEdEose0cBAEB4LpoCdsAMqiRjnirG4Pj3CPzCIqxTGhZArshIkLn5AOwTtZBzpZACCnIDE0BPM37KBjrOS2ShilzXZCddFMMU6G2NuOedZCArRZAaZCdz4L9ZA9xj77kN48gZBidpJeDFOVZCu1yz1wS9QnDgkSyha8OUIDcWoHnwFDKEJiNDIXGi4RnLxDKW7KD060geLF5AZDZD";
     String imagePath = "";
     
     @FXML
@@ -89,7 +89,7 @@ public class StartFXMLController implements Initializable {
         slider.setMajorTickUnit(50);
         slider.setMinorTickCount(5);
         slider.setBlockIncrement(10);
-              
+                      
         slider.valueProperty().addListener(new ChangeListener<Number>() 
         {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) 
@@ -111,13 +111,15 @@ public class StartFXMLController implements Initializable {
             Thread.sleep(90);
         }
         // predict
-        LikeProphesy.prophesize(t1.getText(), t2.getText(), slider.getValue());
+        LikeProphesy.prophesize(t1.getText(), t2.getText(), slider.getValue(), 0);
         progressBar.setProgress(1);
         
         jLabel1.appendText("Projected New Likes by:");
         for (Integer xxx : countlikesFrom1)
         {
-            jLabel1.appendText("\nAlgo1 = " + xxx + "\nAlgo2 = " + countlikesFrom2 + "\nAlgo3 = " + countlikesFrom3 + "\n------");
+            int a = 0, b = 0;
+            int cumm = a*xxx + b*countlikesFrom3;
+            jLabel1.appendText("\nAlgo1 = " + xxx + "\nAlgo2 = " + countlikesFrom2 + "\nAlgo3 = " + countlikesFrom3 + "\nAlgoCumm = " + cumm + "\n------");
         }
         
         // plot data
@@ -170,14 +172,19 @@ public class StartFXMLController implements Initializable {
                 Files.copy(x.toPath(), dest.toPath(), REPLACE_EXISTING);
                 Image img = new Image("1.png");
                 iv1.setImage(img);
+                Thread.sleep(1000);
             }
 
-            t1.setDisable(true);
+            t1.setText("");
         }
         catch (Exception e)
         {
             System.out.println("Error in Displaying Photo!!!");
         }
+        
+        LikeProphesy.prophesize(t1.getText(), t2.getText(), slider.getValue(), 1);
+        jLabel1.appendText("Projected New Likes by:");
+        jLabel1.appendText("\nAlgo1 = " + countlikesFrom3 + "\n------");
         
     }
 }
