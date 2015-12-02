@@ -23,6 +23,7 @@ public class LikeProphesy {
     static int countlikesFrom2 = 0;
     static int countlikesFrom3 = 0;
     static int fianlCount = 0;
+    static String postToPredict = "";
     
     public static int prophesize(String newPost, String accessToken, Double sliderVal, int photoOrNot)
     {

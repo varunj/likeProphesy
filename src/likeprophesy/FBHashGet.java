@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import static likeprophesy.LikeProphesy.postToPredict;
 
 /**
  *
@@ -26,6 +27,7 @@ public class FBHashGet {
     static HashMap<String,Integer> userCountList = new HashMap<String,Integer>();
     static ArrayList<Integer> numberLikes = new ArrayList<>();
     static int totalPosts = 0;
+    static int chk = 1;
     
     public static HashMap<String,ArrayList<String>> getCleanHash(String accessToken)
     {
@@ -56,7 +58,10 @@ public class FBHashGet {
                             totalPosts++;
                             for(String person : names)
                             {
-                                if (userLikedList.containsKey(person))
+                                
+                                if (postWords.toString().equals(postToPredict))     chk = 1;
+                                
+                                if (userLikedList.containsKey(person) && chk == 1)
                                 {
                                     ArrayList<String> newWords = new ArrayList<String>();
                                     newWords.addAll(userLikedList.get(person));
