@@ -43,11 +43,11 @@ import static likeprophesy.LikeProphesy.result1;
 /**
  * FXML Controller class
  *
- * @author VarunJain
+ * @author VarunJain, Ayush Agarwal
  */
 public class StartFXMLController implements Initializable {
     
-    String accessToken = "CAACEdEose0cBAEB4LpoCdsAMqiRjnirG4Pj3CPzCIqxTGhZArshIkLn5AOwTtZBzpZACCnIDE0BPM37KBjrOS2ShilzXZCddFMMU6G2NuOedZCArRZAaZCdz4L9ZA9xj77kN48gZBidpJeDFOVZCu1yz1wS9QnDgkSyha8OUIDcWoHnwFDKEJiNDIXGi4RnLxDKW7KD060geLF5AZDZD";
+    String accessToken = "CAACEdEose0cBALOtQqG9UW5ZCqrOWfZBPmN9juk1kScPDnaQZADZAzl51JrEO3aS8nZAkLV5zkbCMCkR4ZC2pv44DBNsLwxG1jTnyNSKkMHrbKQbWMZBLHmL9J7mSWNugB3ebxAQtji6ZBdbVEzP2tVOVJ6Cn5NwGGVbcwoxll3iReSjPEjrlBPuw3PO5zMDnOzHnwPuSaSRhQZDZD";
     String imagePath = "";
     
     @FXML

@@ -12,6 +12,7 @@ import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.types.Post;
 import com.restfb.types.User;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class FBHashGet {
     static ArrayList<Integer> numberLikes = new ArrayList<>();
     static int totalPosts = 0;
     static int chk = 1;
+    static LocalDate datee = null;
     
     public static HashMap<String,ArrayList<String>> getCleanHash(String accessToken)
     {
@@ -46,7 +48,7 @@ public class FBHashGet {
             for (List<Post> feed : myFeedConnection)
             {
                 for (Post post : feed)
-                { 
+                {
                     if (post.getLikes() != null)
                     {
                         ArrayList<String> names = getNames(post.getLikes().getData().toString());
@@ -60,6 +62,7 @@ public class FBHashGet {
                             {
                                 
                                 if (postWords.toString().equals(postToPredict))     chk = 1;
+                                datee = LocalDate.parse(post.getUpdatedTime().toString().split(" ")[5] + "-" + "12" + "-" + post.getUpdatedTime().toString().split(" ")[2]);
                                 
                                 if (userLikedList.containsKey(person) && chk == 1)
                                 {
