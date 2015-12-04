@@ -47,7 +47,7 @@ import static likeprophesy.LikeProphesy.result1;
  */
 public class StartFXMLController implements Initializable {
     
-    String accessToken = "CAACEdEose0cBALOtQqG9UW5ZCqrOWfZBPmN9juk1kScPDnaQZADZAzl51JrEO3aS8nZAkLV5zkbCMCkR4ZC2pv44DBNsLwxG1jTnyNSKkMHrbKQbWMZBLHmL9J7mSWNugB3ebxAQtji6ZBdbVEzP2tVOVJ6Cn5NwGGVbcwoxll3iReSjPEjrlBPuw3PO5zMDnOzHnwPuSaSRhQZDZD";
+    String accessToken = "CAACEdEose0cBACMYLYotzjXl2hMGlBgAK9ccsCuZCAiX8eye3zSP08DGvsmkQhhpBfNg9yMAGjADulZCxLgYuZCscvWWvX9wBoXRoDVBXnPMluwfHkXXPJNjI5ToqCvwmS72qCzZAkET5Y9sQDMZCs2Vs8hfrtIfYX3KsMxFLHGFCPawV4kZCErV0AHvAWRPxSCFNZC1lVgZAAZDZD";
     String imagePath = "";
     
     @FXML
