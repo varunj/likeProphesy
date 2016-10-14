@@ -10,7 +10,7 @@ posts on facebook.
 1.Make sure you have downloaded the latest version of Android Studio. It works on Linux, Windows and Mac. Download the correct version for your OS
 2.Go to the project repo and fork it by clicking "Fork"
 3.If you are working on Windows, download Git Bash for Windows to get a full Unix bash with Git functionality
-4.Clone the repo to your desktop git clone git@github.com:your_name/powerup-android.git
+4.Clone the repo to your desktop git clone git@github.com:your_name/likeProhesy.git
 5.Open the project with Android Studio
 
 # **Configure remotes**
@@ -19,17 +19,17 @@ When a repository is cloned, it has a default remote called origin that points t
 
 1.Open terminal or git bash in your local repository and type:
 
-    git remote add upstream https://github.com/systers/powerup-android.git
+    git remote add upstream https://github.com/likeProhesy.git
 
     Run git remote -v to check the status, you should see something like the following:
 
-        origin https://github.com/YOUR_USERNAME/powerup-android.git (fetch)
+        origin https://github.com/YOUR_USERNAME/likeProhesy.git (fetch)
 
-        origin https://github.com/YOUR_USERNAME/powerup-android.git (push)
+        origin https://github.com/YOUR_USERNAME/likeProhesy.git (push)
 
-        upstream https://github.com/systers/powerup-android.git (fetch)
+        upstream https://github.com/systers/likeProhesy.git (fetch)
 
-        upstream https://github.com/systers/powerup-android.git (push)
+        upstream https://github.com/systers/likeProhesy.git (push)
 
 2.To update your local copy with remote changes, run the following:
 
