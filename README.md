@@ -4,7 +4,7 @@ likeProphesy app is made to  predict the possible number of likes and the
 people who will like a post by performing the analysis of likes on previous
 posts on facebook.
 
-#**About of likeProphesy**
+#**About likeProphesy**
 This app basically implements three algorithms which helps in predicting the number of likes and those who will like it on the basis of the prediction algorithms.
 
 Here's the link to the algorithms: [Prediction Analysis](src/Final.pdf)
