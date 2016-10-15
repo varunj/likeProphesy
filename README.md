@@ -1,12 +1,17 @@
-# #**likeProphesy - Android**
+# #**likeProphesy**
 
 likeProphesy app is made to  predict the possible number of likes and the
 people who will like a post by performing the analysis of likes on previous
 posts on facebook.
 
+#**About of likeProphesy**
+This app basically implements three algorithms which helps in predicting the number of likes and those who will like it on the basis of the prediction algorithms.
+
+Here's the link to the algorithms: [Prediction Analysis](src/Final.pdf)
+
 #**Setup for Developers**
 
-1.Make sure you have downloaded the latest version of Android Studio. It works on Linux, Windows and Mac. Download the correct version for your OS
+1.Make sure you have downloaded a Java IDE.
 2.Go to the project repo and fork it by clicking "Fork"
 3.If you are working on Windows, download Git Bash for Windows to get a full Unix bash with Git functionality
 4.Clone the repo to your desktop git clone git@github.com:your_name/likeProphesy.git
@@ -53,8 +58,4 @@ When a repository is cloned, it has a default remote called origin that points t
     If you are requested to make changes, edit your commit using git commit --amend, push again and the pull request will edit automatically
     You will need to add a message on the pull request notifying your changes to your reviewer
 
-#**About of likeProphesy**
-This app basically implements three algorithms which helps in predicting the number of likes and those who will like it on the basis of the prediction algorithms.
-
-Here's the link to the algorithms: [Prediction Analysis](src/Final.pdf)
 
